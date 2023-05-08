@@ -4,9 +4,25 @@
     <title><h1>Gestão de transporte</h1></title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, intial-scale=1.0" />
+    <style>
+      #map {
+        width: 60%;
+        height: 350px;
+        margin-bottom: 10px;
+      }
+      #form button {
+        background-color: blue;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+    </style>
   </head>
   <body>
     <h1>Gestão de transporte</h1>
+    <div id="map"></div>
     <form id="form">
       <label for="origem">Origem:</label>
       <input type="text" id="origem" name="origem" /> <br /><br />
@@ -126,6 +142,6 @@
           });
         }
       }
-      </script>
+    </script>
   </body>
 </html>
