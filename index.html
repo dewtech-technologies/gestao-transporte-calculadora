@@ -90,6 +90,42 @@
           directionsRenderer.set("directions", null);
         }
       });
+      function calcular() {
+        var origem = document.getElementById("origem").value;
+        var destino = document.getElementById("destino").value;
+        var consumo = document.getElementById("consumo").value;
+        var preco = document.getElementById("preco").value;
+
+        if (origem == "" || destino == "" || consumo == "" || preco == "") {
+          alert("Por favor, preencha todos os campos.");
+        } else {
+          var directionsService = new google.maps.DirectionsService();
+          var request = {
+            origin: origem,
+            destination: destino,
+            travelMode: "DRIVING",
+          };
+
+          directionsService.route(request, function (result, status) {
+            if (status == "OK") {
+              directionsRenderer.setDirections(result);
+
+              var distancia = result.routes[0].legs[0].distance.value / 1000;
+              var consumoCombustivel = distancia / consumo;
+              var valorCombustivel = consumoCombustivel * preco;
+
+              // Abrir nova janela com os resultados
+              var url = "resultado.html";
+              url += "?distancia=" + distancia.toFixed(2);
+              url += "&consumo=" + consumoCombustivel.toFixed(2);
+              url += "&valor=" + valorCombustivel.toFixed(2);
+              window.open(url, "_blank");
+            } else {
+              alert("Não foi possível calcular a rota.");
+            }
+          });
+        }
+      }
       </script>
   </body>
 </html>
